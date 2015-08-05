@@ -13,7 +13,9 @@
             step_out: 20,
             step_in: -20,
             trigger: 'hover',
-            transition_function: 'ease'
+            transition_function: 'ease',
+            offset_x: 0,
+            offset_y: 0
         };
 
     function vendorPrefixes(items,prop,value){
@@ -69,8 +71,8 @@
         self.menu_items.each(function(index){
             var $item = $(this),
                 angle = (self.options.angle.start + (self._step * index)) * (Math.PI/180),
-                x = Math.round(self.options.circle_radius * Math.cos(angle)),
-                y = Math.round(self.options.circle_radius * Math.sin(angle));
+                x = Math.round(self.options.circle_radius * Math.cos(angle)) + (self.options.offset_x * index),
+                y = Math.round(self.options.circle_radius * Math.sin(angle)) + (self.options.offset_y * index);
 
             $item.data('plugin_'+pluginName+'-pos-x', x);
             $item.data('plugin_'+pluginName+'-pos-y', y);
